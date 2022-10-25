@@ -36,7 +36,7 @@ def start_session() -> scoped_session:
 if __name__ == "__main__":
     session = start_session()
 
-    app = ApplicationBuilder().token(TOKEN).defaults(Defaults(parse_mode=ParseMode.HTML, disable_web_page_preview=False)) \
+    app = ApplicationBuilder().token(TOKEN).defaults(Defaults(parse_mode=ParseMode.HTML, disable_web_page_preview=True)) \
         .persistence(PostgresPersistence(url=DATABASE_URL, session=session)).build()
 
     app.add_handler(CommandHandler("bingo", bingo_field, filters.User(BINGO_ADMINS)))
